@@ -24,6 +24,9 @@
 
 (module+ test
   ;; Tests to be run with raco test
+  (require "private/tests.rkt")
+  (current-directory "private")
+  (dotenv-test-suite)
   )
 
 (module+ main
