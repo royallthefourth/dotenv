@@ -18,4 +18,4 @@ To load from .env to override your program's environment variables, just use
 To load multiple files, use dotenv-load-files!
 @racketblock[
  (require dotenv)
- (dotenv-load-files! '("raccoon.env possum.env"))]
+ (dotenv-load-files! '("raccoon.env"  "possum.env"))]
