@@ -9,5 +9,5 @@
   (check-equal? (process-line "TEST_KEY=test-value") '("TEST_KEY" . "test-value"))
   (check-equal? (car (process-file envstream '())) test-pass)
   (check-equal? (car (load-file ".env" '())) test-pass)
-  (dotenv-load)
+  (dotenv-load!)
   (check-equal? (getenv "DATABASE_USER") (cdr test-user)))

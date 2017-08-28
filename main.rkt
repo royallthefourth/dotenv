@@ -1,7 +1,7 @@
 #lang racket/base
 
 (require "private/dotenv.rkt")
-(provide dotenv-load-files)
+(provide dotenv-load! dotenv-load-files!)
 
 (module+ test
   (require rackunit))
