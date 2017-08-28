@@ -1,5 +1,8 @@
 #lang racket/base
 
+(require "private/dotenv.rkt")
+(provide dotenv-load-files)
+
 (module+ test
   (require rackunit))
 
@@ -13,18 +16,11 @@
 ;; To view documentation:
 ;;   $ raco docs <<name>>
 ;;
-;; For your convenience, we have included a LICENSE.txt file, which links to
-;; the GNU Lesser General Public License.
-;; If you would prefer to use a different license, replace LICENSE.txt with the
-;; desired license.
-;;
 ;; Some users like to add a `private/` directory, place auxiliary files there,
 ;; and require them in `main.rkt`.
 ;;
 ;; See the current version of the racket style guide here:
 ;; http://docs.racket-lang.org/style/index.html
-
-;; Code here
 
 (module+ test
   ;; Tests to be run with raco test

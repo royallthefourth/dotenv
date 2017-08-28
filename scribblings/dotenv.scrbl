@@ -7,4 +7,5 @@
 
 @defmodule[dotenv]
 
-Package Description Here
+A library that allows for reading .env files instead of environment variables
+
