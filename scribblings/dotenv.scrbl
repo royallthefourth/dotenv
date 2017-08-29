@@ -22,10 +22,14 @@ To load multiple files, use dotenv-load-files!
 
 @section{API}
 
-@defproc[(dotenv-load!) null]{
+@defproc[(dotenv-load!) (listof boolean?)]{
  Loads the .env file from the current directory and replaces the current
- environment variables with the file's contents.}
+ environment variables with the file's contents.
+ Return value represents success or failure of setting each var,
+ which is currently useless.}
 
-@defproc[(dotenv-load-files! (filenames (listof string?))) null]{
+@defproc[(dotenv-load-files! (filenames (listof string?))) (listof boolean?)]{
  Loads a list of files from the current directory and replaces the current
- environment variables with the contents of the files.}
+ environment variables with the contents of the files.
+ Return value represents success or failure of setting each var,
+ which is currently useless.}

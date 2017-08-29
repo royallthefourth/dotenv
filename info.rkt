@@ -5,4 +5,4 @@
 (define scribblings '(("scribblings/dotenv.scrbl" ())))
 (define pkg-desc "A library that allows for reading .env files instead of environment variables")
 (define version "1.0")
-(define pkg-authors '(royall))
+(define pkg-authors '("Royall Spence <royall@royall.us>"))
