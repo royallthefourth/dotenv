@@ -1,13 +1,14 @@
 #lang racket/base
 
-(require racket/list racket/stream racket/string)
+(require racket/contract racket/list racket/stream racket/string)
 
 (provide
  process-line
  process-file
  load-file
- dotenv-load-files!
- dotenv-load!)
+ (contract-out
+  [dotenv-load-files! (-> (listof string?) (listof boolean?))]
+  [dotenv-load! (-> (listof boolean?))]))
 
 (define (process-line text)
   (let ([creds (string-split text "=")])
