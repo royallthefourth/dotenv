@@ -3,9 +3,6 @@
 (require "private/dotenv.rkt")
 (provide dotenv-load! dotenv-load-files!)
 
-(module+ test
-  (require rackunit))
-
 ;; Notice
 ;; To install (from within the package directory):
 ;;   $ raco pkg install
@@ -21,13 +18,6 @@
 ;;
 ;; See the current version of the racket style guide here:
 ;; http://docs.racket-lang.org/style/index.html
-
-(module+ test
-  ;; Tests to be run with raco test
-  (require "private/tests.rkt")
-  (current-directory "private")
-  (dotenv-test-suite)
-  )
 
 (module+ main
   ;; Main entry point, executed when run with the `racket` executable or DrRacket.
