@@ -10,4 +10,9 @@
   (check-equal? (car (process-file envstream '())) test-pass)
   (check-equal? (car (load-file ".env" '())) test-pass)
   (dotenv-load!)
-  (check-equal? (getenv "DATABASE_USER") (cdr test-user)))
+  (check-equal? (getenv "DATABASE_USER") (cdr test-user))
+  (check-equal?
+   (environment-variables-ref
+    (dotenv-read '(".env"))
+    (string->bytes/utf-8 "DATABASE_USER"))
+   (string->bytes/utf-8 "test-user")))

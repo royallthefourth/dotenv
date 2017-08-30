@@ -1,7 +1,9 @@
 #lang racket/base
 
 (require "private/dotenv.rkt")
-(provide dotenv-load! dotenv-load-files!)
+(provide dotenv-load!
+         dotenv-load-files!
+         dotenv-read)
 
 ;; Notice
 ;; To install (from within the package directory):

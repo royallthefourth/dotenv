@@ -7,6 +7,7 @@
  process-file
  load-file
  (contract-out
+  [dotenv-read (-> (listof string?) environment-variables?)]
   [dotenv-load-files! (-> (listof string?) (listof boolean?))]
   [dotenv-load! (-> (listof boolean?))]))
 
@@ -30,6 +31,16 @@
   (if (empty? files)
       vars
       (load-files (cdr files) (load-file (car files) vars))))
+
+(define (dotenv-read files)
+  (define new-env (make-environment-variables))
+  (map
+   (λ (pair)
+     (environment-variables-set! new-env
+                                 (string->bytes/locale (car pair))
+                                 (string->bytes/locale (cdr pair))))
+   (load-files files '()))
+  new-env)
 
 (define (dotenv-load-files! files)
   (map
