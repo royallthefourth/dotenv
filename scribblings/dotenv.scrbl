@@ -45,4 +45,5 @@ environment variables, use @racket[dotenv-read]
          environment-variables?]{
  Loads a list of files from the current directory and replaces the current
  environment variables with the contents of the files.
- Return value is a new @racket[environment-variables?]. Raises exception on failure.}
+ Return value is a new @racket[environment-variables?]. Raises exception on failure.
+ @history[#:added "1.1"]}
