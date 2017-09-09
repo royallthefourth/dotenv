@@ -1,5 +1,7 @@
 dotenv
 ======
+[![Build Status](https://travis-ci.org/royallthefourth/dotenv.svg?branch=master)](https://travis-ci.org/royallthefourth/dotenv)
+
 This library allows Racket applications to override their environment variables with a `.env` file.
 
 ## Usage
