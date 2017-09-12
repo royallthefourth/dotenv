@@ -2,7 +2,6 @@
 
 (require "private/dotenv.rkt")
 (provide dotenv-load!
-         dotenv-load-files!
          dotenv-read)
 
 ;; Notice
@@ -14,13 +13,4 @@
 ;;   $ raco pkg remove <<name>>
 ;; To view documentation:
 ;;   $ raco docs <<name>>
-;;
-;; Some users like to add a `private/` directory, place auxiliary files there,
-;; and require them in `main.rkt`.
-;;
-;; See the current version of the racket style guide here:
-;; http://docs.racket-lang.org/style/index.html
 
-(module+ main
-  ;; Main entry point, executed when run with the `racket` executable or DrRacket.
-  )
