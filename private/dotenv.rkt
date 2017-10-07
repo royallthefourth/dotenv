@@ -5,8 +5,7 @@
 (provide
  (contract-out
   [dotenv-read (-> (listof string?) environment-variables?)]
-  [dotenv-load-files! (-> (listof string?) (listof boolean?))]
-  [dotenv-load! (-> (listof boolean?))]))
+  [dotenv-load! (-> (listof string?) (listof boolean?))]))
 
 (define (process-line text)
   (let ([creds (string-split text "=")])
@@ -39,14 +38,11 @@
    (load-files files '()))
   new-env)
 
-(define (dotenv-load-files! files)
+(define (dotenv-load! [filenames '(".env")])
   (map
    (λ (pair)
      (putenv (car pair) (cdr pair)))
-   (load-files files '())))
-
-(define (dotenv-load!)
- (dotenv-load-files! '(".env")))
+   (load-files filenames '())))
 
 (module+ test
   

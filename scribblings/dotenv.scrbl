@@ -15,10 +15,10 @@ To load from .env to override your program's environment variables, just use
  (require dotenv)
  (dotenv-load!)]
 
-To load multiple files, use @racket[dotenv-load-files!]
+To load multiple files, pass a list of filenames
 @racketblock[
  (require dotenv)
- (dotenv-load-files! '("raccoon.env"  "possum.env"))]
+ (dotenv-load! '("raccoon.env"  "possum.env"))]
 
 To return an environment variable set without overwriting the current
 environment variables, use @racket[dotenv-read]
@@ -28,15 +28,10 @@ environment variables, use @racket[dotenv-read]
 
 @section{API}
 
-@defproc[(dotenv-load!) (listof boolean?)]{
+@defproc[(dotenv-load! [filenames (listof string?)]) (listof boolean?)]{
  Loads the .env file from the current directory and replaces the current
  environment variables with the file's contents.
- Return value represents success or failure of setting each var;
- every element should be @racket[#t].}
-
-@defproc[(dotenv-load-files! (filenames (listof string?))) (listof boolean?)]{
- Loads a list of files from the current directory and replaces the current
- environment variables with the contents of the files.
+ Optionally accepts a list of filenames.
  Return value represents success or failure of setting each var;
  every element should be @racket[#t].}
 
