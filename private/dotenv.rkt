@@ -7,10 +7,10 @@
   [dotenv-read (-> (listof string?) environment-variables?)]
   [dotenv-load! (-> (listof string?) (listof boolean?))]))
 
-(define (ignorable-line line)
+(define (ignorable-line? line)
   (or 
-    (eq? (string-length line) 0)
-    (eq? (first (string->list line)) #\#)))
+   (eq? (string-length line) 0)
+   (eq? (first (string->list line)) #\#)))
 
 (define (process-line text)
   (let ([creds (string-split text "=")])
@@ -18,19 +18,19 @@
 
 (define (process-file filestream vars)
   (if
-    (stream-empty? filestream)
-    vars
-    (process-file
-     (stream-rest filestream)
-     (let ([line (stream-first filestream)])
-     (if (ignorable-line line)
+   (stream-empty? filestream)
+   vars
+   (process-file
+    (stream-rest filestream)
+    (let ([line (stream-first filestream)])
+      (if (ignorable-line? line)
           vars
           (cons (process-line line) vars))))))
 
 (define (load-file filename vars)
   (let ([file 
-      (sequence->stream (in-lines (open-input-file filename)))])
-        (append vars (process-file file '()))))
+         (sequence->stream (in-lines (open-input-file filename)))])
+    (append vars (process-file file '()))))
 
 (define (load-files files vars)
   (if (empty? files)
