@@ -5,7 +5,8 @@
 (provide
  (contract-out
   [dotenv-read (-> (listof string?) environment-variables?)]
-  [dotenv-load! (-> (listof string?) (listof boolean?))]))
+  [dotenv-load! (case-> (-> (listof string?) (listof boolean?))
+                        (-> (listof boolean?)))]))
 
 (define (ignorable-line? line)
   (or 
