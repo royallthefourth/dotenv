@@ -11,10 +11,10 @@ To load `.env`, just require the package and invoke it:
 (dotenv-load!)
 ```
 
-To use multiple files, use `dotenv-load!` with a list:
+To use multiple files, use `path-string?` rest arguments:
 ```racket
 (require dotenv)
-(dotenv-load! '("raccoon.env" "possum.env"))
+(dotenv-load! "raccoon.env" "possum.env")
 ```
 
 More details in [the official documentation](http://docs.racket-lang.org/dotenv/index.html).

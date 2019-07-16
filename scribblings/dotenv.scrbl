@@ -10,35 +10,56 @@
 A library that allows for reading .env files instead of environment variables
 
 @section{Usage Examples}
-To load from .env to override your program's environment variables, just use
+To load from @var[.env] to override your program's environment variables, just
+use @racket[dotenv-load!]
 @racketblock[
  (require dotenv)
  (dotenv-load!)]
 
-To load multiple files, pass a list of filenames
+To load multiple files, pass one or more @racket[path-string?] arguments
 @racketblock[
  (require dotenv)
- (dotenv-load! '("raccoon.env"  "possum.env"))]
+ (dotenv-load! "raccoon.env" "possum.env")]
 
-To return an environment variable set without overwriting the current
-environment variables, use @racket[dotenv-read]
+The legacy calling convention of passing a list of filenames still works
+@deprecated[#:what "calling convention" "rest arguments"]
 @racketblock[
  (require dotenv)
- (define other-env (dotenv-read '("raccoon.env"  "possum.env")))]
+ (dotenv-load! '("raccoon.env" "possum.env"))]
+
+To return a new @racket[environment-variables?] set instead of updating
+@racket[current-environment-variables], use @racket[dotenv-read]
+@racketblock[
+ (require dotenv)
+ (define other-env (dotenv-read "raccoon.env" "possum.env"))]
+
+The legacy calling convention for @racket[dotenv-read] also still works
+@deprecated[#:what "calling convention" "rest arguments"]
+@racketblock[
+ (require dotenv)
+ (define other-env (dotenv-read '("raccoon.env" "possum.env")))]
 
 @section{API}
 
-@defproc[(dotenv-load! [filenames (listof string?)]) (listof boolean?)]{
- Loads the .env file from the current directory and replaces the current
- environment variables with the file's contents.
- Optionally accepts a list of filenames.
- Return value represents success or failure of setting each var;
- every element should be @racket[#t].}
+@defproc[(dotenv-load! [filename path-string?] ...) (listof boolean?)]{
+ Update @racket[current-environment-variables] using the values parsed
+ from all the files given as arguments. Updates are done in order, so later
+ definitions override earlier ones. If no arguments are passed, the file @var[.env]
+ from the current-directory will be loaded.
 
-@defproc[(dotenv-read
-          (filenames (listof string?)))
-         environment-variables?]{
- Loads a list of files from the current directory and replaces the current
- environment variables with the contents of the files.
- Return value is a new @racket[environment-variables?]. Raises exception on failure.
- @history[#:added "1.1"]}
+ Return value represents success or failure of setting each var;
+ every element should be @racket[#t]. Raises exception on failure.
+ @history[#:changed "1.2" "Can now use path-string? rest arguments."]
+ @history[#:changed "1.2" "Calling with a list argument is deprecated."]}
+
+@defproc[(dotenv-read [filename path-string?] ...) environment-variables?]{
+ Otherwise identical to @racket[dotenv-load!], except that instead of returning
+ a @racket[(listof boolean?)], a newly created @racket[environment-variables?]
+ set is returned. @racket[current-environment-variables] is not modified by
+ calling this procedure.
+
+ Raises exception on failure.
+ @history[#:added "1.1"]
+ @history[#:changed "1.2" "Can now use path-string? rest arguments."]
+ @history[#:changed "1.2" "Calling with a list argument is deprecated."]
+ @history[#:changed "1.2" "Now behaves like dotenv-load! and attempts to read .env when no arguments are given."]}
