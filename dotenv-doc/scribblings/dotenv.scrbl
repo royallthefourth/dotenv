@@ -7,10 +7,10 @@
 
 @defmodule[dotenv]
 
-A library that allows for reading .env files instead of environment variables
+A library that allows applications to read .env files instead of environment variables
 
 @section{Usage Examples}
-To load from @var[.env] to override your program's environment variables, just
+To load from @var[.env] to override your program's environment variables,
 use @racket[dotenv-load!]
 @racketblock[
  (require dotenv)
@@ -19,25 +19,25 @@ use @racket[dotenv-load!]
 To load multiple files, pass one or more @racket[path-string?] arguments
 @racketblock[
  (require dotenv)
- (dotenv-load! "raccoon.env" "possum.env")]
+ (dotenv-load! "database.env" "api.env")]
 
 The legacy calling convention of passing a list of filenames still works
 @deprecated[#:what "calling convention" "rest arguments"]
 @racketblock[
  (require dotenv)
- (dotenv-load! '("raccoon.env" "possum.env"))]
+ (dotenv-load! '("database.env" "api.env"))]
 
 To return a new @racket[environment-variables?] set instead of updating
 @racket[current-environment-variables], use @racket[dotenv-read]
 @racketblock[
  (require dotenv)
- (define other-env (dotenv-read "raccoon.env" "possum.env"))]
+ (define other-env (dotenv-read "database.env" "api.env"))]
 
 The legacy calling convention for @racket[dotenv-read] also still works
 @deprecated[#:what "calling convention" "rest arguments"]
 @racketblock[
  (require dotenv)
- (define other-env (dotenv-read '("raccoon.env" "possum.env")))]
+ (define other-env (dotenv-read '("database.env" "api.env")))]
 
 @section{API}
 

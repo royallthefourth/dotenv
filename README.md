@@ -5,7 +5,7 @@ dotenv
 This library allows Racket applications to override their environment variables with a `.env` file.
 
 ## Usage
-To load `.env`, just require the package and invoke it:
+To load `.env`, require the package and invoke it:
 ```racket
 (require dotenv)
 (dotenv-load!)
@@ -14,7 +14,7 @@ To load `.env`, just require the package and invoke it:
 To use multiple files, use `path-string?` rest arguments:
 ```racket
 (require dotenv)
-(dotenv-load! "raccoon.env" "possum.env")
+(dotenv-load! "database.env" "api.env")
 ```
 
 More details in [the official documentation](http://docs.racket-lang.org/dotenv/index.html).
