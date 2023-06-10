@@ -6,5 +6,6 @@
   '("dotenv-doc"
     "dotenv-lib"))
 (define build-deps '())
+(define implies deps)
 (define pkg-desc "A library that reads .env files instead of environment variables")
 (define pkg-authors '("Royall Spence <royall@royall.us>"))
