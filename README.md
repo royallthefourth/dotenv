@@ -11,6 +11,8 @@ To load `.env`, require the package and invoke it:
 (dotenv-load!)
 ```
 
+To use the lightweight library-only version without documentation or test dependencies, use `dotenv-lib` instead.
+
 To use multiple files, use `path-string?` rest arguments:
 ```racket
 (require dotenv)
